@@ -3,7 +3,13 @@ from flask_cors import CORS
 
 
 app = Flask(__name__)
-CORS(app, resources={r'/*': {'origins': '*'}}, methods=['POST'])
+CORS(app, resources={r'/predict': {'origins': '*'}}, methods=['POST'])
+
+
+@app.after_request
+def add_header(response):
+    response.headers['Access-Control-Allow-Origin'] = '*'
+    return response
 
 
 @app.route('/predict', methods=['POST'])
