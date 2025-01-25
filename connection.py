@@ -19,8 +19,9 @@ Base = declarative_base()
 
 # Define a sample table/model
 class HousingData(Base):
-    __tablename__ = 'housing_data'
+    __tablename__ = 'housing_data'  
     id = Column(Integer, primary_key=True, autoincrement=True)
+    #here it will get variables from the APIs
     address = Column(String, nullable=False)
     price = Column(Integer, nullable=False)
     beds = Column(Integer)
@@ -30,8 +31,13 @@ class HousingData(Base):
 Base.metadata.create_all(engine)
 
 # Add sample data
-new_house = HousingData(address="123 Main St", price=450000, beds=3, baths=2)
-session.add(new_house)
+
+#code to get data from APIs
+
+#new_house = HousingData(address="123 Main St", price=450000, beds=3, baths=2)
+#session.add(new_house)
+#house_to_delete = session.query(HousingData).filter_by(address="123 Main St").first()
+#session.delete(house_to_delete)
 session.commit()
 
 # Query data
