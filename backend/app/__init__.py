@@ -3,7 +3,7 @@ from flask_cors import CORS
 
 
 app = Flask(__name__)
-CORS(app, methods=['POST'])
+CORS(app, resources={r'/*': {'origins': '*'}}, methods=['POST'])
 
 
 @app.route('/predict', methods=['POST'])
