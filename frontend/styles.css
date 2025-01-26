@@ -27,11 +27,20 @@ body {
 #logo {
     font-family: "Shrikhand", sans-serif; 
     position: absolute;
-    top: 20px;
-    left: 20px;
+    top: 10px;
+    left: 10px;
+    display: flex;
+    align-items: center;
     font-size: 40px;
     font-weight: bold;
     color: #1ba29b; 
+}
+
+/* Style the logo image */
+#logo-img {
+    width: 50px; /* Adjust the width of the logo */
+    height: auto;
+    margin-right: 10px; /* Space between the logo and the text */
 }
 
 .message-container {
