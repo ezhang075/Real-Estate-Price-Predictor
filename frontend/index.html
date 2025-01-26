@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Property Investment Search</title>
+
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+    <div id="logo">FutureNest</div>
+
+    <div class="message-container">
+        <img src="assets/images/house.jpg" alt="Investment Property" class="background-img">
+        <div class="message">Secure Homes, Safer Future.</div>
+        <div class="search-container">
+            <form id="searchForm">
+                <input type="text" id="search-bar" class="search-bar" placeholder="Search properties..." name="address" required>
+                <button type="submit" class="search-button">Search</button>
+            </form>
+            <!-- Loading GIF -->
+            <div id="loading" style="display: none;">
+                <img src="assets/images/loading-gif.gif" alt="Loading..." />
+            </div>
+            <div class="chart-container">
+                <canvas id="myChart"></canvas>
+            </div>
+        </div>
+        <div id="result"></div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
