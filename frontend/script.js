@@ -1,221 +1,207 @@
-// first attempt
-// document.getElementById("searchForm").addEventListener("submit", async function (e) {
-//     e.preventDefault(); // Prevent form from reloading the page
-  
-//     const searchInput = document.getElementById("search-bar").value; // Get the input value
-//     const resultDiv = document.getElementById("result"); // Div for displaying results
-  
-//     try {
-//       // Send a POST request to the API
-//       const response = await fetch("https://futurenest.vercel.app/predict", {
-//         method: "POST",
-//         headers: {
-//           "Content-Type": "application/json", // Specify JSON content type
-//         },
-//         body: JSON.stringify({ address: searchInput }), // Send address as JSON
-//       });
-  
-//       if (!response.ok) {
-//         throw new Error(`HTTP error! status: ${response.status}`);
-//       }
-  
-//       const data = await response.json(); // Parse the JSON response
-//       resultDiv.textContent = `Prediction: ${data.prediction}`; // Display prediction result
-//     } catch (error) {
-//       resultDiv.textContent = `Error: ${error.message}`; // Display error messages
-//     }
-//   });
-  
-// fetch("https://futurenest.vercel.app/predict", {
-// method: "OPTIONS",
-// })
-// .then((response) => console.log(response))
-// .catch((error) => console.error(error));
+// document.addEventListener('DOMContentLoaded', () => {
+//     // Hide chart container and ensure the message is visible
+//     const chartContainer = document.querySelector('.chart-container');
+//     const messageDiv = document.querySelector('.message');
+//     const loadingDiv = document.getElementById('loading'); // Loading GIF container
 
-
-// document.getElementById('searchForm').addEventListener('submit', function(event) {
-//     event.preventDefault();  // Prevent form submission
-
-//     // Show the loading gif
-//     document.getElementById('loading').style.display = 'block';
-
-//     // Simulate a delay for demonstration purposes (e.g., making an API request)
-//     setTimeout(function() {
-//         // Hide the loading gif after the "search" is done
-//         document.getElementById('loading').style.display = 'none';
-
-//         // Here, you can handle the results, e.g., display them in the result container.
-//         document.getElementById('result').innerText = 'Search complete!';
-//     }, 3000);  // 3-second delay for demo purposes
+//     chartContainer.style.display = 'none'; // Hide the chart initially
+//     loadingDiv.style.display = 'none'; // Ensure the loading indicator is hidden
+//     messageDiv.style.display = 'block'; // Ensure the message is visible
 // });
 
-
-
-// second attempt
-// // Initialize Chart.js
+// // Initialize Chart.js after DOM is ready
 // const ctx = document.getElementById('myChart').getContext('2d');
 // const myChart = new Chart(ctx, {
-//   type: 'bar',
-//   data: {
-//     labels: [], // X-axis labels will be populated dynamically
-//     datasets: [
-//       {
-//         label: 'Prediction Values',
-//         data: [], // Data for the chart
-//         backgroundColor: 'rgba(75, 192, 192, 0.2)',
-//         borderColor: 'rgba(75, 192, 192, 1)',
-//         borderWidth: 1,
-//       },
-//     ],
-//   },
-//   options: {
-//     responsive: true,
-//     scales: {
-//       y: {
-//         beginAtZero: true,
-//       },
+//     type: 'bar',
+//     data: {
+//         labels: [], // X-axis labels will be populated dynamically
+//         datasets: [
+//             {
+//                 label: 'Prediction Values',
+//                 data: [], // Data for the chart
+//                 backgroundColor: 'rgba(75, 192, 192, 0.2)',
+//                 borderColor: 'rgba(75, 192, 192, 1)',
+//                 borderWidth: 1,
+//             },
+//         ],
 //     },
-//   },
-// });
-
-// // Ensure the chart is hidden on page load
-// document.addEventListener('DOMContentLoaded', () => {
-//   const chartContainer = document.querySelector('.chart-container');
-//   chartContainer.style.display = 'none'; // Hide the chart initially
+//     options: {
+//         responsive: true,
+//         scales: {
+//             y: {
+//                 beginAtZero: true,
+//             },
+//         },
+//     },
 // });
 
 // // Form submission handling
 // document.getElementById('searchForm').addEventListener('submit', async function (e) {
-//   e.preventDefault(); // Prevent form from reloading the page
+//     e.preventDefault(); // Prevent form from reloading the page
 
-//   const searchInput = document.getElementById('search-bar').value; // Get user input
-//   const resultDiv = document.getElementById('result'); // Div for displaying results
-//   const loadingDiv = document.getElementById('loading'); // Loading GIF container
-//   const chartContainer = document.querySelector('.chart-container'); // Chart container
+//     const streetAddress = document.getElementById('street-address').value;
+//     const city = document.getElementById('city').value;
+//     const county = document.getElementById('county').value;
+//     const state = document.getElementById('state').value;
 
-//   // Show loading GIF and hide chart and result initially
-//   loadingDiv.style.display = 'block';
-//   chartContainer.style.display = 'none';
-//   resultDiv.style.display = 'none';
+//     const resultDiv = document.getElementById('result'); // Div for displaying results
+//     const loadingDiv = document.getElementById('loading'); // Loading GIF container
+//     const chartContainer = document.querySelector('.chart-container'); // Chart container
+//     const messageDiv = document.querySelector('.message'); // Message div
 
-//   try {
-//     // Simulate an API call (remove this block once API is ready)
-//     await new Promise((resolve) => setTimeout(resolve, 2000)); // Simulate 2 seconds delay
-//     const fakeData = { prediction: Math.random() * 100 }; // Fake prediction data
+//     // Show loading GIF and hide chart initially
+//     loadingDiv.style.display = 'block';
+//     chartContainer.style.display = 'none';
+//     resultDiv.style.display = 'none';
+//     messageDiv.style.display = 'none'; // Hide message when loading
 
-//     // Hide loading GIF and show result and chart
-//     loadingDiv.style.display = 'none';
-//     resultDiv.style.display = 'block';
-//     chartContainer.style.display = 'block';
+//     try {
+//         // Simulate an API call using setTimeout to mock loading delay
+//         await new Promise((resolve) => setTimeout(resolve, 2000)); // Simulate 2 seconds delay
 
-//     // Display the prediction result
-//     resultDiv.textContent = `Prediction: ${fakeData.prediction.toFixed(2)}`;
+//         // Simulate a fake prediction value
+//         const fakePrediction = Math.random() * 100;
 
-//     // Update the chart dynamically
-//     myChart.data.labels.push(searchInput); // Add search input as the label
-//     myChart.data.datasets[0].data.push(fakeData.prediction); // Add prediction value to the dataset
-//     myChart.update();
-//   } catch (error) {
-//     // Hide loading GIF and show error message
-//     loadingDiv.style.display = 'none';
-//     resultDiv.style.display = 'block';
-//     resultDiv.textContent = `Error: ${error.message}`;
-//   }
+//         // Hide loading GIF and show result and chart
+//         loadingDiv.style.display = 'none';
+//         resultDiv.style.display = 'block';
+//         chartContainer.style.display = 'block';
+//         messageDiv.style.display = 'none'; // Hide message when chart is shown
+
+//         // Display the prediction result
+//         resultDiv.textContent = `Prediction: ${fakePrediction.toFixed(2)}`;
+
+//         // Update the chart dynamically
+//         myChart.data.labels.push(`${streetAddress}, ${city}, ${county}, ${state}`);
+//         myChart.data.datasets[0].data.push(fakePrediction);
+//         myChart.update();
+//     } catch (error) {
+//         // Hide loading GIF and show error message
+//         loadingDiv.style.display = 'none';
+//         resultDiv.style.display = 'block';
+//         messageDiv.style.display = 'block'; // Show message in case of error
+//         resultDiv.textContent = `Error: ${error.message}`;
+//     }
 // });
 
-// // OPTIONS request for testing (remove if unnecessary)
-// fetch('https://futurenest.vercel.app/predict', {
-//   method: 'OPTIONS',
-// })
-//   .then((response) => console.log(response))
-//   .catch((error) => console.error(error));
 
 
-// attempt 3 - working
 document.addEventListener('DOMContentLoaded', () => {
     // Hide chart container and ensure the message is visible
     const chartContainer = document.querySelector('.chart-container');
     const messageDiv = document.querySelector('.message');
     const loadingDiv = document.getElementById('loading'); // Loading GIF container
-  
+
     chartContainer.style.display = 'none'; // Hide the chart initially
     loadingDiv.style.display = 'none'; // Ensure the loading indicator is hidden
     messageDiv.style.display = 'block'; // Ensure the message is visible
-  });
-  
-  // Initialize Chart.js after DOM is ready
-  const ctx = document.getElementById('myChart').getContext('2d');
-  const myChart = new Chart(ctx, {
+});
+
+// Initialize Chart.js after DOM is ready
+const ctx = document.getElementById('myChart').getContext('2d');
+const myChart = new Chart(ctx, {
     type: 'bar',
     data: {
-      labels: [], // X-axis labels will be populated dynamically
-      datasets: [
-        {
-          label: 'Prediction Values',
-          data: [], // Data for the chart
-          backgroundColor: 'rgba(75, 192, 192, 0.2)',
-          borderColor: 'rgba(75, 192, 192, 1)',
-          borderWidth: 1,
-        },
-      ],
+        labels: [], // X-axis labels will be populated dynamically
+        datasets: [
+            {
+                label: 'Prediction Values',
+                data: [], // Data for the chart
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1,
+            },
+        ],
     },
     options: {
-      responsive: true,
-      scales: {
-        y: {
-          beginAtZero: true,
+        responsive: true,
+        scales: {
+            y: {
+                beginAtZero: true,
+            },
         },
-      },
     },
-  });
-  
-  // Form submission handling
-  document.getElementById('searchForm').addEventListener('submit', async function (e) {
+});
+
+// Form submission handling
+document.getElementById('searchForm').addEventListener('submit', async function (e) {
     e.preventDefault(); // Prevent form from reloading the page
-  
-    const searchInput = document.getElementById('search-bar').value; // Get user input
+
+    const streetAddress = document.getElementById('street-address').value;
+    const city = document.getElementById('city').value;
+    const county = document.getElementById('county').value;
+    const state = document.getElementById('state').value;
+
     const resultDiv = document.getElementById('result'); // Div for displaying results
     const loadingDiv = document.getElementById('loading'); // Loading GIF container
     const chartContainer = document.querySelector('.chart-container'); // Chart container
     const messageDiv = document.querySelector('.message'); // Message div
-  
+    const searchForm = document.getElementById('searchForm'); // Search form
+    const riskLevelDiv = document.getElementById('riskLevel'); // Div for risk level text
+
     // Show loading GIF and hide chart initially
     loadingDiv.style.display = 'block';
     chartContainer.style.display = 'none';
     resultDiv.style.display = 'none';
     messageDiv.style.display = 'none'; // Hide message when loading
-  
+    searchForm.style.display = 'block'; // Keep search form visible until chart appears
+    riskLevelDiv.style.display = 'none'; // Hide risk level initially
+
     try {
-      // Simulate an API call (remove this block once API is ready)
-      await new Promise((resolve) => setTimeout(resolve, 2000)); // Simulate 2 seconds delay
-      const fakeData = { prediction: Math.random() * 100 }; // Fake prediction data
-  
-      // Hide loading GIF and show result and chart
-      loadingDiv.style.display = 'none';
-      resultDiv.style.display = 'block';
-      chartContainer.style.display = 'block';
-      messageDiv.style.display = 'none'; // Hide message when chart is shown
-  
-      // Display the prediction result
-      resultDiv.textContent = `Prediction: ${fakeData.prediction.toFixed(2)}`;
-  
-      // Update the chart dynamically
-      myChart.data.labels.push(searchInput); // Add search input as the label
-      myChart.data.datasets[0].data.push(fakeData.prediction); // Add prediction value to the dataset
-      myChart.update();
+        // Simulate an API call using setTimeout to mock loading delay
+        await new Promise((resolve) => setTimeout(resolve, 2000)); // Simulate 2 seconds delay
+
+        // Simulate a fake prediction value and risk level
+        const fakePrediction = Math.random() * 100;
+        const riskLevels = ['Very high', 'Relatively high', 'Relatively low', 'Very low'];
+        const riskLevel = riskLevels[Math.floor(Math.random() * riskLevels.length)];
+
+        // Hide loading GIF and show result and chart
+        loadingDiv.style.display = 'none';
+        resultDiv.style.display = 'block';
+        chartContainer.style.display = 'block';
+        messageDiv.style.display = 'none'; // Hide message when chart is shown
+        searchForm.style.display = 'none'; // Hide search form when chart appears
+        riskLevelDiv.style.display = 'block'; // Show risk level text
+
+        // Display the prediction result and risk level
+        resultDiv.textContent = `Prediction: ${fakePrediction.toFixed(2)}`;
+        riskLevelDiv.textContent = `Risk Level: ${riskLevel}`;
+
+        // Update the chart dynamically
+        myChart.data.labels.push(`${streetAddress}, ${city}, ${county}, ${state}`);
+        myChart.data.datasets[0].data.push(fakePrediction);
+        myChart.update();
     } catch (error) {
-      // Hide loading GIF and show error message
-      loadingDiv.style.display = 'none';
-      resultDiv.style.display = 'block';
-      messageDiv.style.display = 'block'; // Show message in case of error
-      resultDiv.textContent = `Error: ${error.message}`;
+        // Hide loading GIF and show error message
+        loadingDiv.style.display = 'none';
+        resultDiv.style.display = 'block';
+        messageDiv.style.display = 'block'; // Show message in case of error
+        resultDiv.textContent = `Error: ${error.message}`;
     }
-  });
-  
-  // OPTIONS request for testing (remove if unnecessary)
-  fetch('https://futurenest.vercel.app/predict', {
-    method: 'OPTIONS',
-  })
-    .then((response) => console.log(response))
-    .catch((error) => console.error(error));
-  
+});
+
+
+// Function to update the risk level and apply the appropriate class
+function setRiskLevel(riskLevel) {
+    const riskLevelElement = document.getElementById('riskLevel');
+    
+    // Clear any existing classes
+    riskLevelElement.classList.remove('risk-very-high', 'risk-relatively-high', 'risk-relatively-low', 'risk-very-low');
+
+    // Set the new text and class based on the risk level
+    riskLevelElement.textContent = riskLevel;
+
+    if (riskLevel === 'Very high') {
+        riskLevelElement.classList.add('risk-very-high');
+    } else if (riskLevel === 'Relatively high') {
+        riskLevelElement.classList.add('risk-relatively-high');
+    } else if (riskLevel === 'Relatively low') {
+        riskLevelElement.classList.add('risk-relatively-low');
+    } else if (riskLevel === 'Very low') {
+        riskLevelElement.classList.add('risk-very-low');
+    }
+}
+
+// Example usage
+setRiskLevel('Very high'); // This would set the risk level text and apply the red color

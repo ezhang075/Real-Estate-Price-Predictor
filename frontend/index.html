@@ -18,7 +18,10 @@
         <div class="message">Secure Homes, Safer Future.</div>
         <div class="search-container">
             <form id="searchForm">
-                <input type="text" id="search-bar" class="search-bar" placeholder="Search properties..." name="address" required>
+                <input type="text" id="street-address" class="search-bar" placeholder="Street Address" name="street-address" required>
+                <input type="text" id="city" class="search-bar" placeholder="City" name="city" required>
+                <input type="text" id="county" class="search-bar" placeholder="County" name="county" required>
+                <input type="text" id="state" class="search-bar" placeholder="State" name="state" required>
                 <button type="submit" class="search-button">Search</button>
             </form>
             <!-- Loading GIF -->
@@ -27,6 +30,8 @@
             </div>
             <div class="chart-container">
                 <canvas id="myChart"></canvas>
+            </div>
+            <div id="riskLevel" style="display: none;">
             </div>
         </div>
         <div id="result"></div>

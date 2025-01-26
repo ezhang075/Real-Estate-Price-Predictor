@@ -76,11 +76,8 @@ body {
     color: #f0d739;
     text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
     position: relative; /* Keep text above background */
-    top: -25vh; /* Move the message up */
-
+    margin-top: 0vh; /* Move the message further down */   
 }
-
-
 
 .search-bar {
     width: 500px;  /* Adjust the width of the search bar */
@@ -91,6 +88,8 @@ body {
     outline: none;
     background-color: rgba(255, 255, 255, 0.8);
     color: #333;
+    display: block;  /* Make sure search bars stack vertically */
+    margin-bottom: 15px;  /* Add space between search bars */
 }
 
 .search-bar:focus {
@@ -99,15 +98,17 @@ body {
 
 /* Style for the search button */
 .search-button {
-    background-color: #4CAF50;  /* Green background */
-    color: white;  /* White text */
-    padding: 15px 30px;  /* Adjust padding */
+    width: 500px; /* Same width as search bar */
+    padding: 15px; /* Adjust padding */
     font-size: 20px;  /* Font size */
-    border: none;  /* Remove default border */
-    border-radius: 10px;  /* Rounded corners */
-    cursor: pointer;  /* Cursor pointer when hovering */
-    transition: all 0.3s ease;  /* Smooth transition for hover effects */
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);  /* Subtle shadow for depth */
+    border-radius: 10px; /* Rounded corners */
+    background-color: #4CAF50; /* Green background */
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 10px; /* Add space between search bar and button */
 }
 
 /* Hover effect for the search button */
@@ -175,13 +176,15 @@ body {
 
 /* Chart container styling */
 .chart-container {
-    width: 80%; /* Adjust width based on layout */
-    max-width: 800px; /* Maximum width to maintain balance */
-    margin: 0 auto; /* Center the container */
+    width: 100%; /* Adjust width based on layout */
+    height: 100%; /* Adjust the height to account for space for the risk level */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Align the content from the top */
+    align-items: center;
     padding: 20px;
     border-radius: 15px;
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
-    display: block; /* Temporarily show it to debug */
     background-color: rgba(200, 200, 200, 0.5); /* Highlight it for debugging */
     z-index: 10;
 }
@@ -196,6 +199,7 @@ body {
     border: 1px solid #ddd;
     border-radius: 10px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    flex-grow: 1; /* Ensure the chart takes up remaining space */
 }
 
 /* Responsive Design */
@@ -229,4 +233,35 @@ body {
     text-align: center;
     font-size: 1.2rem;
     color: #333;
+}
+
+
+/* Hide the search form when chart appears */
+#searchForm {
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+/* Risk Level Text Styling */
+#riskLevel {
+    font-size: 24px; /* Adjust the size */
+    font-weight: bold;
+    margin-top: 20px; /* Space between chart and risk level text */
+    text-align: center;
+}
+
+/* Colors based on risk levels */
+.risk-very-high {
+    color: red;
+}
+
+.risk-relatively-high {
+    color: orange;
+}
+
+.risk-relatively-low {
+    color: rgb(223, 223, 46);
+}
+
+.risk-very-low {
+    color: green;
 }
