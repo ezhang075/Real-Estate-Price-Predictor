@@ -9,12 +9,17 @@
 </head>
 <body>
     <div id="logo">
-        <img src="assets/images/logo-transparent.png" alt="Logo" id="logo-img">
-        FutureNest
-    </div>
+        <a href="#" id="resetLink">
+            <img src="assets/images/logo-transparent.png" alt="Logo" id="logo-img">
+        </a>
+        <span id="resetText">FutureNest</span>
+    </div>    
+    
 
     <div class="message-container">
         <img src="assets/images/house.jpg" alt="Investment Property" class="background-img">
+        <div id="riskLevel" style="display: none;"></div>
+        <div id="result"></div>
         <div class="message">Secure Homes, Safer Future.</div>
         <div class="search-container">
             <form id="searchForm">
@@ -31,10 +36,9 @@
             <div class="chart-container">
                 <canvas id="myChart"></canvas>
             </div>
-            <div id="riskLevel" style="display: none;">
-            </div>
+            
         </div>
-        <div id="result"></div>
+        
     </div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="script.js"></script>

@@ -143,9 +143,12 @@ document.getElementById('searchForm').addEventListener('submit', async function 
     loadingDiv.style.display = 'block';
     chartContainer.style.display = 'none';
     resultDiv.style.display = 'none';
-    messageDiv.style.display = 'none'; // Hide message when loading
+    messageDiv.style.display = 'block'; // Show message when loading
     searchForm.style.display = 'block'; // Keep search form visible until chart appears
     riskLevelDiv.style.display = 'none'; // Hide risk level initially
+
+    // Add animation to the message text
+    messageDiv.classList.add('fade-out-up');
 
     try {
         // Simulate an API call using setTimeout to mock loading delay
@@ -160,7 +163,6 @@ document.getElementById('searchForm').addEventListener('submit', async function 
         loadingDiv.style.display = 'none';
         resultDiv.style.display = 'block';
         chartContainer.style.display = 'block';
-        messageDiv.style.display = 'none'; // Hide message when chart is shown
         searchForm.style.display = 'none'; // Hide search form when chart appears
         riskLevelDiv.style.display = 'block'; // Show risk level text
 
@@ -176,11 +178,9 @@ document.getElementById('searchForm').addEventListener('submit', async function 
         // Hide loading GIF and show error message
         loadingDiv.style.display = 'none';
         resultDiv.style.display = 'block';
-        messageDiv.style.display = 'block'; // Show message in case of error
         resultDiv.textContent = `Error: ${error.message}`;
     }
 });
-
 
 // Function to update the risk level and apply the appropriate class
 function setRiskLevel(riskLevel) {
@@ -205,3 +205,41 @@ function setRiskLevel(riskLevel) {
 
 // Example usage
 setRiskLevel('Very high'); // This would set the risk level text and apply the red color
+
+
+// Reset to search bars when logo is clicked
+document.addEventListener('DOMContentLoaded', () => {
+    const chartContainer = document.querySelector('.chart-container');
+    const messageDiv = document.querySelector('.message');
+    const loadingDiv = document.getElementById('loading');
+    const searchForm = document.getElementById('searchForm');
+    const resultDiv = document.getElementById('result');
+    const riskLevelDiv = document.getElementById('riskLevel');
+
+    chartContainer.style.display = 'none';
+    loadingDiv.style.display = 'none';
+    messageDiv.style.display = 'block';
+
+    // Reset functionality for logo and FutureNest text
+    const resetElements = [
+        document.getElementById('resetLink'), // Logo
+        document.getElementById('resetText') // FutureNest text
+    ];
+    resetElements.forEach((element) => {
+        element.addEventListener('click', (e) => {
+            e.preventDefault();
+
+            // Reset page to initial state
+            chartContainer.style.display = 'none';
+            resultDiv.style.display = 'none';
+            riskLevelDiv.style.display = 'none';
+            loadingDiv.style.display = 'none';
+            messageDiv.style.display = 'block'; // Bring back the message
+            searchForm.style.display = 'block';
+            searchForm.reset(); // Clear form inputs
+
+            // Reset the message animation (optional)
+            messageDiv.classList.remove('fade-out-up'); // Remove the animation class if needed
+        });
+    });
+});

@@ -13,6 +13,11 @@
     src: url('assets/fonts/muli/Muli-SemiBold.ttf') format('truetype');
 }
 
+@font-face {
+    font-family: "Muli Bold";
+    src: url('assets/fonts/muli/Muli-Bold.ttf') format('truetype');
+}
+
 body {
     font-family: Arial, sans-serif;
     height: 100vh;
@@ -98,7 +103,7 @@ body {
 
 /* Style for the search button */
 .search-button {
-    width: 500px; /* Same width as search bar */
+    width: 200px; /* Same width as search bar */
     padding: 15px; /* Adjust padding */
     font-size: 20px;  /* Font size */
     border-radius: 10px; /* Rounded corners */
@@ -192,7 +197,8 @@ body {
 #myChart {
     display: block;
     width: 100%;
-    max-width: 700px;
+    height: 600px;
+    max-width: 1000px;
     margin: 0 auto;
     padding: 10px;
     background: rgba(255, 255, 255, 0.9);
@@ -232,7 +238,8 @@ body {
     display: block; /* Temporarily show it to debug */
     text-align: center;
     font-size: 1.2rem;
-    color: #333;
+    color: #ffffff;
+    font-family: "Muli", Arial;
 }
 
 
@@ -247,6 +254,7 @@ body {
     font-weight: bold;
     margin-top: 20px; /* Space between chart and risk level text */
     text-align: center;
+    font-family: "Muli Bold", Arial;
 }
 
 /* Colors based on risk levels */
@@ -264,4 +272,32 @@ body {
 
 .risk-very-low {
     color: green;
+}
+
+
+/* Add CSS for the animation */
+@keyframes fadeOutUp {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+        font-size: 2rem; /* Start at full size */
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-150%); /* Move a larger distance upward */
+        font-size: 0.5rem; /* Reduce size */
+    }
+}
+
+.fade-out-up {
+    animation: fadeOutUp 2s forwards; /* 2s duration */
+    animation-delay: 1s; /* 1s delay before starting */
+}
+
+
+#resetText {
+    cursor: pointer; /* Makes it clickable */
+    text-decoration: none; /* Removes underline */
+    color: inherit; /* Keeps the same text color */
+    font-size: inherit; /* Matches the surrounding text style */
 }
