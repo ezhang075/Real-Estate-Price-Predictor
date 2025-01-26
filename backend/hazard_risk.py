@@ -1,7 +1,7 @@
 import pandas as pd
 
 # Load the CSV file
-file_path = "NRI_Table_Counties.csv"
+file_path = "/Users/weifengzhang/Desktop/IrvineHacks/Real-Estate-Price-Predictor/backend/NRI_Table_Counties.csv"
 df = pd.read_csv(file_path)
 
 df = df.sort_values(by ='RISK_SCORE', ascending = 0) 
@@ -12,3 +12,4 @@ def get_county_risk(county, state):
                     (df['STATE'] == f'{state}')].itertuples(index=False, name=None), None)
 
     return result
+
